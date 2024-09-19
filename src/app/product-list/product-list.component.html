@@ -1,0 +1,35 @@
+<section>
+  <app-nav-bar ></app-nav-bar>
+</section>
+
+<div class="container mt-4">
+  <h2 class="text-center">Product Listing</h2>
+  <div class="" style="display: flex;
+  justify-content: flex-end;">
+    <button type="button" class="btn btn-outline-secondary btn-sm" (click)="navigateToCart()">MyCart</button>
+  </div>
+  <!-- Search Bar -->
+  <div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+      <input type="text" class="form-control" placeholder="Search products..." [(ngModel)]="searchQuery" (input)="onSearch()">
+      
+      
+    </div>
+    
+  </div>
+
+  <!-- Product Grid -->
+  <div class="row">
+    <div class="col-md-4 " *ngFor="let product of products|searchFilter:searchQuery">
+      <div class="card mb-4 " style="box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset !important ;
+      ">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <h6 class="card-subtitle mb-2 text-muted">{{ product.price | currency }}</h6>
+          <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
